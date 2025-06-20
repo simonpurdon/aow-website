@@ -5,73 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name | Product Studio & AI Consulting</title>
     
-    <!-- Using Google Fonts for a clean, modern, tech-focused look -->
+    <!-- Importing the correct fonts from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
     
     <style>
         /*
-         * --- ROOT & VARIABLES: High-Contrast Tech Theme ---
-         * A minimalist palette inspired by the hero image: pure black, electric blue, and clean whites.
+         * --- ROOT & VARIABLES: Professional Product Theme ---
+         * A sophisticated dark palette inspired by modern product websites.
         */
         :root {
-            --bg-color: #000000; /* Pure black for maximum contrast */
-            --text-color: #EAEAEA; /* A very light gray, easier on the eyes than pure white */
-            --primary-color: #38BDF8; /* A vibrant, electric blue */
-            --secondary-color: #888888; /* Muted, supporting gray for less important text */
-            --card-bg-color: #111111; /* A very dark charcoal, just off black */
+            --bg-color: #1A1A1A; /* Very dark grey, not pure black */
+            --text-color: #E0E0E0; /* Light grey for readability */
+            --heading-color: #FFFFFF;
+            --secondary-text-color: #A0A0A0;
+            --card-bg-color: #262626;
             --border-color: #333333;
-            --font-main: 'Inter', sans-serif;
+            --button-bg-color: #FFFFFF;
+            --button-text-color: #000000;
+            --font-heading: 'Host Grotesk', sans-serif;
+            --font-body: 'Host Grotesk', sans-serif;
+            --font-accent: 'IBM Plex Mono', monospace;
         }
 
         /* --- GENERAL STYLES --- */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: var(--font-main);
-            font-weight: 400;
+            font-family: var(--font-body);
+            font-weight: 400; /* Normal text weight */
             line-height: 1.7;
             margin: 0;
-            padding: 2rem;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+            -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3 {
-            font-family: var(--font-main);
-            font-weight: 800;
+            font-family: var(--font-heading);
+            font-weight: 300; /* Light weight for headings */
             line-height: 1.2;
-            color: #FFFFFF; /* Pure white for major headings */
+            color: var(--heading-color);
         }
 
         h1 {
             font-size: clamp(3rem, 7vw, 4.5rem);
             text-align: center;
-            letter-spacing: -2px; /* Tighter letter spacing for a modern look */
         }
         
         h2 {
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
         }
 
         a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: underline;
+            font-weight: 400; /* Match body weight */
             transition: color 0.3s ease;
         }
         
         a:hover {
-            color: #FFFFFF; 
+            color: var(--heading-color); 
         }
 
         /* --- LAYOUT & SECTIONS --- */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 3rem 1rem;
+            padding: 3rem 1.5rem;
         }
         
         .main-grid {
@@ -89,7 +91,7 @@
 
         /* --- HEADER / HERO SECTION --- */
         header {
-            min-height: 90vh;
+            padding: 5rem 0rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -98,60 +100,131 @@
         }
         
         header p {
-            max-width: 55ch; /* Slightly shorter line length for focus */
+            max-width: 55ch;
             font-size: 1.1rem;
-            color: var(--secondary-color);
+            color: var(--secondary-text-color);
             margin-top: 1.5rem;
         }
 
-        /* This is where our hero image is styled */
         .hero-image {
             width: 100%;
-            max-width: 700px; /* Control the max size */
-            height: auto; /* Maintain aspect ratio */
-            margin: 2rem 0; /* Add space around the image */
+            max-width: 600px;
+            height: auto;
+            margin: 2rem 0;
         }
 
         /* --- SERVICES SECTION --- */
         .service-card {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 2.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
         }
         
+        /* Accent Text Styling */
         .service-tag {
             display: inline-block;
-            color: var(--secondary-color);
+            font-family: var(--font-accent);
+            color: var(--secondary-text-color);
             font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
+            font-weight: 600;
+            letter-spacing: -0.5px; /* Reduced letter spacing */
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
 
-        /* --- CONTACT SECTION --- */
-        footer {
-            text-align: center;
-            margin-top: 5rem;
-            padding: 3rem 1rem;
-            border-top: 1px solid var(--border-color);
+        /* --- NEW CTA FORM SECTION --- */
+        .cta-section {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 450px;
+            margin: 4rem auto 0 auto;
         }
         
-        footer p {
-            color: var(--secondary-color);
+        @media (min-width: 768px) {
+            .cta-section {
+                padding: 3rem;
+            }
         }
 
-        footer a {
-            font-size: 1.25rem;
+        .cta-section .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section label {
+            display: block;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
         
+        .cta-section input[type="email"] {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #111111;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .cta-section input[type="email"]:focus {
+            outline: none;
+            border-color: var(--heading-color);
+        }
+
+        .cta-section .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin: 1.5rem 0;
+        }
+        
+        .cta-section input[type="checkbox"] {
+            margin-top: 4px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .cta-section .checkbox-group label {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--secondary-text-color);
+        }
+        
+        .cta-section button {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-section button:hover {
+            opacity: 0.9;
+        }
+        
+        .cta-section .disclaimer {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .cta-section .disclaimer a {
+            color: #aaa;
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -160,7 +233,7 @@
     <header class="container">
         <h1>Human Insight. Machine Intelligence.</h1>
         
-        <img src="https://i.imgur.com/9CnRxzR.png" 
+        <img src="/images/hero-image.jpg" 
              alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
              class="hero-image">
 
@@ -176,7 +249,7 @@
                 <div class="service-tag">Venture Partnership</div>
                 <h2>Product Studio</h2>
                 <p>
-                    The conventional SaaS model often fails to capture the true value software creates. We engage in genuine partnerships to design, build, and launch new ventures, sharing both the risks and the rewards.
+                    The conventional SaaS model often fails to capture the true value software creates. We engage in genuine partnerships to design, build, and launch new ventures.
                 </p>
                 <a href="https://docsend.com/view/563h94g4wztewbcm" target="_blank" rel="noopener noreferrer">Read our thesis &rarr;</a>
             </div>
@@ -189,14 +262,32 @@
                 <a href="#contact">Discuss a project &rarr;</a>
             </div>
         </div>
+
+        <!-- New CTA Form Section -->
+        <section id="contact" class="cta-section">
+            <form>
+                <div class="form-group">
+                    <label for="email">Work email</label>
+                    <input type="email" id="email" name="email" placeholder="name@company.com" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="subscribe" name="subscribe">
+                    <label for="subscribe">I'd like occasional product updates, best practices, and webinar/event invites.</label>
+                </div>
+                <button type="submit">Continue</button>
+            </form>
+            <p class="disclaimer">
+                By submitting this form, you confirm that you have read and understood our <a href="#">Privacy Policy</a>. This site may be protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+            </p>
+        </section>
     </main>
     
-    <!-- Contact / Footer Section -->
-    <footer id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Ready to build the future or reinvent your business?</p>
-        <a href="mailto:your-email@example.com">your-email@example.com</a>
-    </footer>
-
+    <script>
+        // A small script to prevent the form from actually submitting and reloading the page.
+        document.querySelector('.cta-section form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest!');
+        });
+    </script>
 </body>
 </html>
