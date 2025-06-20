@@ -12,18 +12,18 @@
     
     <style>
         /*
-         * --- ROOT & VARIABLES: Professional Product Theme ---
-         * A sophisticated dark palette inspired by modern product websites.
+         * --- ROOT & VARIABLES: "Blueprint" Theme ---
+         * A high-contrast palette inspired by technical blueprints and graphic art.
         */
         :root {
-            --bg-color: #1A1A1A; /* Very dark grey, not pure black */
-            --text-color: #E0E0E0; /* Light grey for readability */
-            --heading-color: #FFFFFF;
-            --secondary-text-color: #A0A0A0;
-            --card-bg-color: #262626;
-            --border-color: #333333;
-            --button-bg-color: #FFFFFF;
-            --button-text-color: #000000;
+            --bg-color: #E0F2FE; /* Light, textured blue */
+            --text-color: #0D131A; /* Deep black for text */
+            --heading-color: #000000;
+            --secondary-text-color: #4A5568;
+            --card-bg-color: #FFFFFF;
+            --border-color: #CBD5E1;
+            --button-bg-color: #000000;
+            --button-text-color: #FFFFFF;
             --font-heading: 'Host Grotesk', sans-serif;
             --font-body: 'Host Grotesk', sans-serif;
             --font-accent: 'IBM Plex Mono', monospace;
@@ -91,7 +91,7 @@
 
         /* --- HEADER / HERO SECTION --- */
         header {
-            padding: 5rem 0; /* Removed side padding to allow full-width image */
+            padding: 5rem 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -99,10 +99,9 @@
             text-align: center;
         }
         
-        /* Centered content within the header needs its own container now */
         .header-content {
              max-width: 55ch;
-             padding: 0 1.5rem; /* Add side padding here instead */
+             padding: 0 1.5rem;
         }
         
         .header-content p {
@@ -110,21 +109,20 @@
             color: var(--secondary-text-color);
             margin-top: 1.5rem;
         }
-        
-        /* NEW: Full-width container for the hero image */
+
         .hero-image-container {
             width: 100%;
-            height: 40vh; /* Adjust height as needed */
+            height: 40vh;
             max-height: 400px;
             margin: 3rem 0;
-            overflow: hidden; /* Hides parts of the image that don't fit */
+            overflow: hidden;
         }
 
         .hero-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Crucial: Fills the container without distortion */
-            object-position: center; /* Keeps the center of the image visible */
+            object-fit: cover;
+            object-position: center;
         }
 
         /* --- SERVICES SECTION --- */
@@ -135,34 +133,64 @@
             padding: 2.5rem;
         }
         
-        /* Accent Text Styling */
         .service-tag {
             display: inline-block;
             font-family: var(--font-accent);
             color: var(--secondary-text-color);
             font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: -0.5px; /* Reduced letter spacing */
+            letter-spacing: -0.5px;
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
 
-        /* --- NEW CTA FORM SECTION --- */
-        .cta-section {
+        /* --- MODAL STYLES --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-backdrop.active {
+            display: flex; /* Show when active */
+        }
+        
+        .modal-content {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 2rem;
-            max-width: 450px;
-            margin: 4rem auto 0 auto;
+            width: 90%;
+            max-width: 450px; /* Respects container width */
+            position: relative;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-text-color);
+            cursor: pointer;
         }
         
         @media (min-width: 768px) {
-            .cta-section {
+            .modal-content {
                 padding: 3rem;
             }
         }
-
+        
+        /* --- FORM STYLES (inside modal) --- */
         .cta-section .form-group {
             margin-bottom: 1rem;
         }
@@ -172,13 +200,14 @@
             font-weight: 400;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
+            color: var(--text-color);
         }
         
         .cta-section input[type="email"] {
             width: 100%;
             padding: 0.75rem;
-            background-color: #111111;
-            border: 1px solid #444;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             color: var(--text-color);
             font-family: var(--font-body);
@@ -188,7 +217,7 @@
         
         .cta-section input[type="email"]:focus {
             outline: none;
-            border-color: var(--heading-color);
+            border-color: var(--text-color);
         }
 
         .cta-section .checkbox-group {
@@ -235,8 +264,26 @@
         }
         
         .cta-section .disclaimer a {
-            color: #aaa;
+            color: #555;
             text-decoration: underline;
+        }
+
+        /* --- Simple Button for Triggering Modal --- */
+        .cta-button {
+             background-color: var(--button-bg-color);
+             color: var(--button-text-color);
+             border: none;
+             border-radius: 50px;
+             padding: 0.75rem 1.5rem;
+             font-family: var(--font-body);
+             font-size: 1rem;
+             font-weight: 400;
+             cursor: pointer;
+             transition: transform 0.3s ease;
+             margin-top: 2rem;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
         }
 
     </style>
@@ -249,10 +296,8 @@
             <h1>Human Insight. Machine Intelligence.</h1>
         </div>
         
-        <!-- The image container now lives outside the centered content -->
         <div class="hero-image-container">
-            <!-- IMPORTANT: This path assumes you have an 'images' folder with 'hero-image.png' inside it. -->
-            <img src="images/hero-image.webp" 
+            <img src="images/hero-image-comp.png" 
                  alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
                  class="hero-image">
         </div>
@@ -261,6 +306,7 @@
              <p>
                 We partner with industry leaders to construct technology-accelerated companies from first principles. For established organizations, we architect and implement powerful AI strategies that create lasting competitive advantages.
             </p>
+            <button class="cta-button" id="openModalBtn">Get in touch</button>
         </div>
     </header>
 
@@ -281,34 +327,66 @@
                 <p>
                     Artificial intelligence is a fundamental business paradigm shift. We help your organization move beyond discussion and into meaningful implementation.
                 </p>
-                <a href="#contact">Discuss a project &rarr;</a>
+                <a href="#contact" class="open-modal-link">Discuss a project &rarr;</a>
             </div>
         </div>
-
-        <!-- New CTA Form Section -->
-        <section id="contact" class="cta-section">
-            <form>
-                <div class="form-group">
-                    <label for="email">Work email</label>
-                    <input type="email" id="email" name="email" placeholder="name@company.com" required>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="subscribe" name="subscribe">
-                    <label for="subscribe">I'd like occasional product updates, best practices, and webinar/event invites.</label>
-                </div>
-                <button type="submit">Continue</button>
-            </form>
-            <p class="disclaimer">
-                By submitting this form, you confirm that you have read and understood our <a href="#">Privacy Policy</a>. This site may be protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
-            </p>
-        </section>
     </main>
+
+    <!-- MODAL POPUP -->
+    <div class="modal-backdrop" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+            <section class="cta-section">
+                <form>
+                    <div class="form-group">
+                        <label for="email">Work email</label>
+                        <input type="email" id="email" name="email" placeholder="name@company.com" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="subscribe" name="subscribe">
+                        <label for="subscribe">I'd like occasional product updates, best practices, and webinar/event invites.</label>
+                    </div>
+                    <button type="submit">Continue</button>
+                </form>
+                <p class="disclaimer">
+                    By submitting this form, you confirm that you have read and understood our <a href="#">Privacy Policy</a>. This site may be protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+                </p>
+            </section>
+        </div>
+    </div>
     
     <script>
-        // A small script to prevent the form from actually submitting and reloading the page.
-        document.querySelector('.cta-section form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest!');
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('contactModal');
+            const openBtn = document.getElementById('openModalBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const openModalLinks = document.querySelectorAll('.open-modal-link');
+
+            const openModal = () => modal.classList.add('active');
+            const closeModal = () => modal.classList.remove('active');
+
+            openBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                // Close modal if backdrop is clicked
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            openModalLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+
+            // Prevent form submission
+            document.querySelector('.cta-section form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your interest!');
+                closeModal();
+            });
         });
     </script>
 </body>
