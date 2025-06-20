@@ -91,7 +91,7 @@
 
         /* --- HEADER / HERO SECTION --- */
         header {
-            padding: 5rem 0rem;
+            padding: 5rem 0; /* Removed side padding to allow full-width image */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -99,18 +99,32 @@
             text-align: center;
         }
         
-        header p {
-            max-width: 55ch;
+        /* Centered content within the header needs its own container now */
+        .header-content {
+             max-width: 55ch;
+             padding: 0 1.5rem; /* Add side padding here instead */
+        }
+        
+        .header-content p {
             font-size: 1.1rem;
             color: var(--secondary-text-color);
             margin-top: 1.5rem;
         }
+        
+        /* NEW: Full-width container for the hero image */
+        .hero-image-container {
+            width: 100%;
+            height: 40vh; /* Adjust height as needed */
+            max-height: 400px;
+            margin: 3rem 0;
+            overflow: hidden; /* Hides parts of the image that don't fit */
+        }
 
         .hero-image {
             width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 2rem 0;
+            height: 100%;
+            object-fit: cover; /* Crucial: Fills the container without distortion */
+            object-position: center; /* Keeps the center of the image visible */
         }
 
         /* --- SERVICES SECTION --- */
@@ -230,16 +244,24 @@
 <body>
 
     <!-- Main Hero Section -->
-    <header class="container">
-        <h1>Human Insight. Machine Intelligence.</h1>
+    <header>
+        <div class="header-content">
+            <h1>Human Insight. Machine Intelligence.</h1>
+        </div>
         
-        <img src="/images/hero-image.jpg" 
-             alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
-             class="hero-image">
-
-        <p>
-            We partner with industry leaders to construct technology-accelerated companies from first principles. For established organizations, we architect and implement powerful AI strategies that create lasting competitive advantages.
-        </p>
+        <!-- The image container now lives outside the centered content -->
+        <div class="hero-image-container">
+            <!-- IMPORTANT: This path assumes you have an 'images' folder with 'hero-image.png' inside it. -->
+            <img src="images/hero-image.png" 
+                 alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
+                 class="hero-image">
+        </div>
+        
+        <div class="header-content">
+             <p>
+                We partner with industry leaders to construct technology-accelerated companies from first principles. For established organizations, we architect and implement powerful AI strategies that create lasting competitive advantages.
+            </p>
+        </div>
     </header>
 
     <!-- Main Content Grid -->
