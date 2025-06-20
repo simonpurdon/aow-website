@@ -1,393 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Product Studio & AI Consulting</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorkWk | Building the future of work</title>
+  <!-- Import Tailwind CSS from CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Importing the correct fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* Tailwind doesn't setup custom fonts by default – add these helper classes */
+    body {
+      font-family: 'Host Grotesk', sans-serif;
+      font-weight: 300;
+    }
+    h1, h2, h3 {
+      font-family: 'Host Grotesk', sans-serif;
+    }
+    .font-accent {
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 1px;
+    }
     
-    <!-- Importing the correct fonts from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
-    
-    <style>
-        /*
-         * --- ROOT & VARIABLES: "Blueprint" Theme ---
-         * A high-contrast palette inspired by technical blueprints and graphic art.
-        */
-        :root {
-            --bg-color: #E0F2FE; /* Light, textured blue */
-            --text-color: #0D131A; /* Deep black for text */
-            --heading-color: #000000;
-            --secondary-text-color: #4A5568;
-            --card-bg-color: #FFFFFF;
-            --border-color: #CBD5E1;
-            --button-bg-color: #000000;
-            --button-text-color: #FFFFFF;
-            --font-heading: 'Host Grotesk', sans-serif;
-            --font-body: 'Host Grotesk', sans-serif;
-            --font-accent: 'IBM Plex Mono', monospace;
-        }
-
-        /* --- GENERAL STYLES --- */
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            font-weight: 400; /* Normal text weight */
-            line-height: 1.7;
-            margin: 0;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            font-weight: 300; /* Light weight for headings */
-            line-height: 1.2;
-            color: var(--heading-color);
-        }
-
-        h1 {
-            font-size: clamp(3rem, 7vw, 4.5rem);
-            text-align: center;
-        }
-        
-        h2 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-        }
-
-        a {
-            color: var(--text-color);
-            text-decoration: underline;
-            font-weight: 400; /* Match body weight */
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--heading-color); 
-        }
-
-        /* --- LAYOUT & SECTIONS --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-        
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        @media (min-width: 768px) {
-            .main-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* --- HEADER / HERO SECTION --- */
-        header {
-            padding: 5rem 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .header-content {
-             max-width: 55ch;
-             padding: 0 1.5rem;
-        }
-        
-        .header-content p {
-            font-size: 1.1rem;
-            color: var(--secondary-text-color);
-            margin-top: 1.5rem;
-        }
-
-        .hero-image-container {
-            width: 100%;
-            height: 40vh;
-            max-height: 400px;
-            margin: 3rem 0;
-            overflow: hidden;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* --- SERVICES SECTION --- */
-        .service-card {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2.5rem;
-        }
-        
-        .service-tag {
-            display: inline-block;
-            font-family: var(--font-accent);
-            color: var(--secondary-text-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        /* --- MODAL STYLES --- */
-        .modal-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            display: none; /* Hidden by default */
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .modal-backdrop.active {
-            display: flex; /* Show when active */
-        }
-        
-        .modal-content {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 450px; /* Respects container width */
-            position: relative;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--secondary-text-color);
-            cursor: pointer;
-        }
-        
-        @media (min-width: 768px) {
-            .modal-content {
-                padding: 3rem;
-            }
-        }
-        
-        /* --- FORM STYLES (inside modal) --- */
-        .cta-section .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .cta-section label {
-            display: block;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-color);
-        }
-        
-        .cta-section input[type="email"] {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            color: var(--text-color);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        
-        .cta-section input[type="email"]:focus {
-            outline: none;
-            border-color: var(--text-color);
-        }
-
-        .cta-section .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            margin: 1.5rem 0;
-        }
-        
-        .cta-section input[type="checkbox"] {
-            margin-top: 4px;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-        
-        .cta-section .checkbox-group label {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--secondary-text-color);
-        }
-        
-        .cta-section button {
-            width: 100%;
-            padding: 0.85rem;
-            background-color: var(--button-bg-color);
-            color: var(--button-text-color);
-            border: none;
-            border-radius: 5px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-        
-        .cta-section button:hover {
-            opacity: 0.9;
-        }
-        
-        .cta-section .disclaimer {
-            font-size: 0.75rem;
-            color: #888;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        
-        .cta-section .disclaimer a {
-            color: #555;
-            text-decoration: underline;
-        }
-
-        /* --- Simple Button for Triggering Modal --- */
-        .cta-button {
-             background-color: var(--button-bg-color);
-             color: var(--button-text-color);
-             border: none;
-             border-radius: 50px;
-             padding: 0.75rem 1.5rem;
-             font-family: var(--font-body);
-             font-size: 1rem;
-             font-weight: 400;
-             cursor: pointer;
-             transition: transform 0.3s ease;
-             margin-top: 2rem;
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-
-    </style>
+    /* Custom transitions for the nav-content */
+    #nav-content {
+      width: 100%;
+      transition: all 0.3s ease-in-out;
+    }
+    /* Scrolled state: match Tailwind's max-w-5xl (approx 1024px), add a small top margin,
+       background with 70% opacity, blur and shadow */
+    #nav-content.scrolled {
+      width: 1024px;  /* Adjust if your container max-width is different */
+      margin: 0 auto;
+      margin-top: 0.5rem;
+      background-color: rgba(26, 26, 26, 0.7);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+    }
+  </style>
 </head>
-<body>
-
-    <!-- Main Hero Section -->
-    <header>
-        <div class="header-content">
-            <h1>Human Insight. Machine Intelligence.</h1>
-        </div>
-        
-        <div class="hero-image-container">
-            <img src="images/hero-image-comp.png" 
-                 alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
-                 class="hero-image">
-        </div>
-        
-        <div class="header-content">
-             <p>
-                We partner with industry leaders to construct technology-accelerated companies from first principles. For established organizations, we architect and implement powerful AI strategies that create lasting competitive advantages.
-            </p>
-            <button class="cta-button" id="openModalBtn">Get in touch</button>
-        </div>
-    </header>
-
-    <!-- Main Content Grid -->
-    <main class="container">
-        <div class="main-grid">
-            <div class="service-card">
-                <div class="service-tag">Venture Partnership</div>
-                <h2>Product Studio</h2>
-                <p>
-                    The conventional SaaS model often fails to capture the true value software creates. We engage in genuine partnerships to design, build, and launch new ventures.
-                </p>
-                <a href="https://docsend.com/view/563h94g4wztewbcm" target="_blank" rel="noopener noreferrer">Read our thesis &rarr;</a>
-            </div>
-            <div class="service-card">
-                <div class="service-tag">Strategic Counsel</div>
-                <h2>AI Consulting</h2>
-                <p>
-                    Artificial intelligence is a fundamental business paradigm shift. We help your organization move beyond discussion and into meaningful implementation.
-                </p>
-                <a href="#contact" class="open-modal-link">Discuss a project &rarr;</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- MODAL POPUP -->
-    <div class="modal-backdrop" id="contactModal">
-        <div class="modal-content">
-            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-            <section class="cta-section">
-                <form>
-                    <div class="form-group">
-                        <label for="email">Work email</label>
-                        <input type="email" id="email" name="email" placeholder="name@company.com" required>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="subscribe" name="subscribe">
-                        <label for="subscribe">I'd like occasional product updates, best practices, and webinar/event invites.</label>
-                    </div>
-                    <button type="submit">Continue</button>
-                </form>
-                <p class="disclaimer">
-                    By submitting this form, you confirm that you have read and understood our <a href="#">Privacy Policy</a>. This site may be protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
-                </p>
-            </section>
-        </div>
+<body class="bg-[#1A1A1A] text-[#E0E0E0]">
+  <!-- Navigation Bar -->
+  <nav id="navbar" class="absolute top-0 w-full z-50 transition-all duration-300 ease-in-out">
+    <div id="nav-content" class="px-6 py-4 flex justify-between items-center">
+      <div class="text-white font-bold text-lg">WorkWk</div>
+      <div>
+                <a href="#contact" class="text-white ml-4">Contact</a>
+      </div>
     </div>
+  </nav>
+
+  <!-- Main Hero Section -->
+  <header class="flex flex-col items-center text-center py-20">
+    <div class="max-w-prose px-6 mt-16">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-light text-white">
+        Bringing your best ideas to life. Building the future of work together.
+      </h1>
+    </div>
+    <!-- Hero Modal and Image Container -->
+    <div class="mt-8 mb-8">
+      <!-- Hero Image -->
+      <img src="images/hero-image-comp.png" 
+           alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
+           class="relative w-full h-auto z-20" />
+    </div>
+    <div class="max-w-prose px-6">
+      <p class="text-lg text-[#A0A0A0] mt-6">
+        We partner with existing businesses, industry experts, and/or individuals with distribution to a market to build, launch and accelerate the businesses of the future. In specific circumstances, we work with established organizations to architect, implement and train teams on the use of AI and technology that will create a long-term strategic advantage for that business.
+      </p>
+      <div class="mt-6 space-x-4">
+        <button class="px-6 py-3 bg-white text-black rounded-md transition-opacity hover:opacity-90">Product Studio</button>
+        <button class="px-6 py-3 bg-white text-black rounded-md transition-opacity hover:opacity-90">Consulting</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Grid -->
+  <main class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            <!-- Service Card 1 -->
+            <div class="bg-[#262626] border border-[#333333] rounded-lg p-8">
+                <div class="text-sm font-accent text-[#A0A0A0] uppercase mb-4">With You</div>
+                <h2 class="text-2xl md:text-3xl font-light text-white mb-4">Product Studio</h2>
+                <p class="mb-4">
+                    We're long term partners in the products that we co-found with you. We're looking for genuine partnerships to design, build, and launch the businesses of the future together.
+                </p>
+                <a href="" target="_blank" rel="noopener noreferrer" class="underline transition-colors hover:text-white">
+                    Read our thesis &rarr;
+                </a>
+            </div>
+            <!-- Service Card 2 -->
+            <div class="bg-[#262626] border border-[#333333] rounded-lg p-8">
+                <div class="text-sm font-accent text-[#A0A0A0] uppercase mb-4">In Your Business</div>
+                <h2 class="text-2xl md:text-3xl font-light text-white mb-4">Technology Consulting</h2>
+                <p class="mb-4">
+                    There is no industry in the world that will and has not been impacted by AI. If you are not using it, you are falling behind. We help your organization move beyond discussion and into meaningful implementation.
+                </p>
+                <a href="#contact" class="underline transition-colors hover:text-white">
+                    Discuss a project &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- New CTA Form Section -->
+        <section id="contact" class="[#262626] border border-[#333333] rounded-lg p-8 max-w-md mx-auto mt-16">
+            <form>
+                <h2 class="text-2xl md:text-3xl font-light text-white mb-8">Get in Touch</h2>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-normal mb-2">Work email</label>
+                    <input type="email" id="email" name="email" placeholder="name@company.com" required 
+                           class="w-full p-3 bg-[#111111] border border-[#444] rounded-md text-[#E0E0E0]" />
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="font-accent block text-sm font-normal mb-2">Full name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required 
+                           class="w-full p-3 bg-[#111111] border border-[#444] rounded-md text-[#E0E0E0]" />
+                </div>
+                <div class="mb-4">
+                    <label for="company" class="font-accent block text-sm font-normal mb-2">Company name</label>
+                    <input type="text" id="company" name="company" placeholder="Your Company" required 
+                           class="w-full p-3 bg-[#111111] border border-[#444] rounded-md text-[#E0E0E0]" />
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="font-accent block text-sm font-normal mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your project or interest" required 
+                              class="w-full p-3 bg-[#111111] border border-[#444] rounded-md text-[#E0E0E0]"></textarea>
+                </div>
+                
+                <button type="submit" class="font-accent w-full px-4 py-3 bg-white text-black rounded-md transition-opacity hover:opacity-90">
+                    Send
+                </button>
+            </form>
+            <p class="text-xs text-[#888] text-center mt-4">
+                By submitting this form, you confirm that you have read and understood our 
+                <a href="#" class="underline hover:text-white">Privacy Policy</a>. This site is protected by reCAPTCHA.
+            </p>
+        </section>
+    </main>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('contactModal');
-            const openBtn = document.getElementById('openModalBtn');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const openModalLinks = document.querySelectorAll('.open-modal-link');
-
-            const openModal = () => modal.classList.add('active');
-            const closeModal = () => modal.classList.remove('active');
-
-            openBtn.addEventListener('click', openModal);
-            closeModalBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', (event) => {
-                // Close modal if backdrop is clicked
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-            
-            openModalLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openModal();
-                });
-            });
-
-            // Prevent form submission
-            document.querySelector('.cta-section form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your interest!');
-                closeModal();
-            });
+        // A small script to prevent the form from actually submitting and reloading the page.
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest!');
         });
+
+        const nav = document.getElementById('navbar');
+        const navContent = document.getElementById('nav-content');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Change to scrolled state
+                nav.classList.remove('absolute');
+                nav.classList.add('fixed', 'top-0', 'left-0');
+                navContent.classList.add('max-w-5xl', 'mx-auto', 'bg-[#1A1A1A]', 'bg-opacity-70', 'backdrop-blur-md', 'shadow-lg', 'rounded-b-md');
+            } else {
+                // Revert to initial state
+                nav.classList.remove('fixed', 'top-0', 'left-0');
+                nav.classList.add('absolute');
+                navContent.classList.remove('max-w-5xl', 'mx-auto', 'bg-[#1A1A1A]', 'bg-opacity-70', 'backdrop-blur-md', 'shadow-lg', 'rounded-b-md');
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navContent.classList.add('scrolled');
+      } else {
+        navContent.classList.remove('scrolled');
+      }
+    });
     </script>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#111111] text-[#E0E0E0] py-4 mt-24">
+      <div class="max-w-5xl mx-auto px-6 flex flex-row justify-between items-center">
+        <p class="text-sm">&copy; 2025 WorkWk. All rights reserved.</p>
+        <p class="text-sm">Built with ⚡ &amp; ☕</p>
+      </div>
+    </footer>
 </body>
 </html>
