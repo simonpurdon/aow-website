@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Product Studio & AI Consulting</title>
+    
+    <!-- Using Google Fonts for a clean, modern, tech-focused look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /*
+         * --- ROOT & VARIABLES: High-Contrast Tech Theme ---
+         * A minimalist palette inspired by the hero image: pure black, electric blue, and clean whites.
+        */
+        :root {
+            --bg-color: #000000; /* Pure black for maximum contrast */
+            --text-color: #EAEAEA; /* A very light gray, easier on the eyes than pure white */
+            --primary-color: #38BDF8; /* A vibrant, electric blue */
+            --secondary-color: #888888; /* Muted, supporting gray for less important text */
+            --card-bg-color: #111111; /* A very dark charcoal, just off black */
+            --border-color: #333333;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        /* --- GENERAL STYLES --- */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            font-weight: 400;
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-main);
+            font-weight: 800;
+            line-height: 1.2;
+            color: #FFFFFF; /* Pure white for major headings */
+        }
+
+        h1 {
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            text-align: center;
+            letter-spacing: -2px; /* Tighter letter spacing for a modern look */
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #FFFFFF; 
+        }
+
+        /* --- LAYOUT & SECTIONS --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* --- HEADER / HERO SECTION --- */
+        header {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        header p {
+            max-width: 55ch; /* Slightly shorter line length for focus */
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+
+        /* This is where our hero image is styled */
+        .hero-image {
+            width: 100%;
+            max-width: 700px; /* Control the max size */
+            height: auto; /* Maintain aspect ratio */
+            margin: 2rem 0; /* Add space around the image */
+        }
+
+        /* --- SERVICES SECTION --- */
+        .service-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .service-tag {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        footer p {
+            color: var(--secondary-color);
+        }
+
+        footer a {
+            font-size: 1.25rem;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Main Hero Section -->
+    <header class="container">
+        <h1>Human Insight. Machine Intelligence.</h1>
+        
+        <img src="https://i.imgur.com/9CnRxzR.png" 
+             alt="A classical human hand and a robotic hand meeting, signifying the bridge between humanity and technology." 
+             class="hero-image">
+
+        <p>
+            We partner with industry leaders to construct technology-accelerated companies from first principles. For established organizations, we architect and implement powerful AI strategies that create lasting competitive advantages.
+        </p>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container">
+        <div class="main-grid">
+            <div class="service-card">
+                <div class="service-tag">Venture Partnership</div>
+                <h2>Product Studio</h2>
+                <p>
+                    The conventional SaaS model often fails to capture the true value software creates. We engage in genuine partnerships to design, build, and launch new ventures, sharing both the risks and the rewards.
+                </p>
+                <a href="https://docsend.com/view/563h94g4wztewbcm" target="_blank" rel="noopener noreferrer">Read our thesis &rarr;</a>
+            </div>
+            <div class="service-card">
+                <div class="service-tag">Strategic Counsel</div>
+                <h2>AI Consulting</h2>
+                <p>
+                    Artificial intelligence is a fundamental business paradigm shift. We help your organization move beyond discussion and into meaningful implementation.
+                </p>
+                <a href="#contact">Discuss a project &rarr;</a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Contact / Footer Section -->
+    <footer id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Ready to build the future or reinvent your business?</p>
+        <a href="mailto:your-email@example.com">your-email@example.com</a>
+    </footer>
+
+</body>
+</html>
